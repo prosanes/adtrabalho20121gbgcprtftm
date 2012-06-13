@@ -1,0 +1,11 @@
+<ad>
+	<configuracao>
+		<fasetransiente>2600</fasetransiente>
+		<numerorodadas>30</numerorodadas>
+		<tamanhorodadas>20000</tamanhorodadas>
+		<taxaservico>1.0</taxaservico>
+		<utilizacao>0.2</utilizacao>
+		<fila1>FCFS</fila1>
+		<fila2>FCFS</fila2>
+	</configuracao>
+</ad>

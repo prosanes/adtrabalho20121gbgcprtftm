@@ -1,0 +1,401 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.6.22)  23 JUN 2011 12:14
+entering extended mode
+ %&-line parsing enabled.
+**Relatorio.tex
+(./Relatorio.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, portuguese, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/share/texmf-texlive/tex/latex/ucs/utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+))
+(/usr/share/texmf-texlive/tex/latex/ucs/ucs.sty
+Package: ucs 2004/10/17 UCS: Unicode input support
+
+(/usr/share/texmf-texlive/tex/latex/ucs/data/uni-global.def
+File: uni-global.def 2004/10/17 UCS: Unicode global data
+)
+\uc@secondtry=\count87
+\uc@combtoks=\toks16
+\uc@combtoksb=\toks17
+\uc@temptokena=\toks18
+)
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
+
+(/usr/share/texmf-texlive/tex/generic/babel/portuges.ldf
+Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
+
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen103
+)
+\l@brazil = a dialect from \language\l@portuges 
+Package babel Info: Making " an active character on input line 145.
+))
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks19
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count89
+))
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+(/usr/share/texmf-texlive/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count90
+\float@exts=\toks20
+\float@box=\box26
+\@float@everytoks=\toks21
+\@floatcapt=\box27
+)
+(/usr/share/texmf-texlive/tex/latex/carlisle/scalefnt.sty) (./Relatorio.aux)
+\openout1 = `Relatorio.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+(/usr/share/texmf-texlive/tex/latex/ucs/ucsencs.def
+File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
+)
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count91
+\scratchdimen=\dimen106
+\scratchbox=\box28
+\nofMPsegments=\count92
+\nofMParguments=\count93
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count94
+\MPscratchDim=\dimen107
+\MPnumerator=\count95
+\everyMPtoPDFconversion=\toks23
+) (/usr/share/texmf-texlive/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2004/10/17 UCS: Unicode data U+0000..U+00FF
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
+
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+ [1]
+<AD-Relatorio.jpg, id=13, 72.27pt x 68.4156pt>
+File: AD-Relatorio.jpg Graphic file (type jpg)
+ <use AD-Relatorio.jpg>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 89.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 89.
+ [1 <./AD-Relatorio.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 105--110
+
+ []
+
+[2] <Capturar.PNG, id=25, 286.06876pt x 150.5625pt>
+File: Capturar.PNG Graphic file (type png)
+ <use Capturar.PNG> [3]
+Overfull \hbox (3.8896pt too wide) in paragraph at lines 147--154
+\OT1/cmr/m/n/10 numerorodadas$\OMS/cmsy/m/n/10 !$\OT1/cmr/m/n/10 Determina quan
+-tas ro-da-das ser~ao si-mu-la-das, com-pu-tando
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--154
+
+ []
+
+(/usr/share/texmf-texlive/tex/latex/ucs/data/uni-32.def
+File: uni-32.def 2004/10/17 UCS: Unicode data U+2000..U+20FF
+) [4 <./Capturar.PNG>]
+[5] [6] [7] [8]
+Overfull \hbox (1.33417pt too wide) in paragraph at lines 303--321
+ [][] 
+ []
+
+[9]
+LaTeX Font Info:    Calculating math sizes for size <6.99997> on input line 415
+.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.49998> not available
+(Font)              size <5> substituted on input line 415.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.49998> not available
+(Font)              size <5> substituted on input line 415.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.49998> not available
+(Font)              size <5> substituted on input line 415.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6.99997> on input line 415.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <4.89995> on input line 415.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <3.49998> on input line 415.
+
+Overfull \hbox (17.42496pt too wide) in paragraph at lines 415--438
+[][] 
+ []
+
+[10]
+Overfull \hbox (92.77394pt too wide) in paragraph at lines 442--450
+[][] 
+ []
+
+
+Overfull \hbox (90.4267pt too wide) in paragraph at lines 454--462
+[][] 
+ []
+
+
+Overfull \hbox (92.77394pt too wide) in paragraph at lines 466--474
+[][] 
+ []
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 477.
+
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 478.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 478.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
+(Font)              size <7> substituted on input line 478.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75> not available
+(Font)              size <5> substituted on input line 478.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
+(Font)              size <7> substituted on input line 478.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75> not available
+(Font)              size <5> substituted on input line 478.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7.5> on input line 478.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5.24997> on input line 478.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <3.75> on input line 478.
+
+Overfull \hbox (90.4267pt too wide) in paragraph at lines 478--486
+[][] 
+ []
+
+[11]
+Overfull \hbox (102.7948pt too wide) in paragraph at lines 490--498
+[][] 
+ []
+
+
+Overfull \hbox (98.80867pt too wide) in paragraph at lines 502--510
+[][] 
+ []
+
+
+Overfull \hbox (90.62115pt too wide) in paragraph at lines 514--522
+[][] 
+ []
+
+
+Overfull \hbox (90.62115pt too wide) in paragraph at lines 526--534
+[][] 
+ []
+
+
+Overfull \hbox (95.02397pt too wide) in paragraph at lines 538--545
+[][] 
+ []
+
+
+Overfull \hbox (95.02397pt too wide) in paragraph at lines 549--556
+[][] 
+ []
+
+[12] [13] <E[W1].png, id=63, 602.25pt x 372.39125pt>
+File: E[W1].png Graphic file (type png)
+ <use E[W1].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 578--579
+ [] 
+ []
+
+[14 <./E[W1].png (PNG copy)>] <E[Nq1].png, id=67, 602.25pt x 372.39125pt>
+File: E[Nq1].png Graphic file (type png)
+
+<use E[Nq1].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 599--600
+ [] 
+ []
+
+[15 <./E[Nq1].png (PNG copy)>] <E[T1].png, id=71, 602.25pt x 372.39125pt>
+File: E[T1].png Graphic file (type png)
+
+<use E[T1].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 621--622
+ [] 
+ []
+
+[16 <./E[T1].png (PNG copy)>] <E[N1].png, id=75, 602.25pt x 372.39125pt>
+File: E[N1].png Graphic file (type png)
+
+<use E[N1].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 643--644
+ [] 
+ []
+
+[17 <./E[N1].png (PNG copy)>] <E[W2].png, id=80, 602.25pt x 372.39125pt>
+File: E[W2].png Graphic file (type png)
+
+<use E[W2].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 665--666
+ [] 
+ []
+
+[18 <./E[W2].png (PNG copy)>] <E[Nq2].png, id=84, 602.25pt x 372.39125pt>
+File: E[Nq2].png Graphic file (type png)
+
+<use E[Nq2].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 687--688
+ [] 
+ []
+
+[19 <./E[Nq2].png (PNG copy)>] <E[T2].png, id=88, 602.25pt x 372.39125pt>
+File: E[T2].png Graphic file (type png)
+
+<use E[T2].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 709--710
+ [] 
+ []
+
+[20 <./E[T2].png (PNG copy)>] <E[N2].png, id=92, 602.25pt x 372.39125pt>
+File: E[N2].png Graphic file (type png)
+
+<use E[N2].png>
+Overfull \hbox (76.57211pt too wide) in paragraph at lines 731--732
+ [] 
+ []
+
+[21 <./E[N2].png (PNG copy)>]
+Overfull \hbox (82.27272pt too wide) in paragraph at lines 746--757
+[][] 
+ []
+
+[22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 834--836
+
+ []
+
+
+Overfull \hbox (19.92274pt too wide) in paragraph at lines 840--842
+\OT1/cmr/m/n/10 Cons-tru-tor nesta classe te-mos dois ,quando pas-sa-mos como p
+ar^ametro
+ []
+
+[24] [25] [26] [27]
+Overfull \hbox (0.11722pt too wide) in paragraph at lines 930--931
+\OT1/cmr/m/n/10 Manda o ge-ra-dor aleat^^Sorio ge-rar uma amos-trar que in-dica
+ quando
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 936--937
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 943--944
+
+ []
+
+[28] [29] (./Relatorio.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.50002pt have occurred.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 2421 strings out of 495041
+ 30794 string characters out of 1181897
+ 101408 words of memory out of 3000000
+ 5602 multiletter control sequences out of 15000+50000
+ 5504 words of font info for 20 fonts, out of 3000000 for 9000
+ 30 hyphenation exceptions out of 8191
+ 25i,12n,24p,335b,597s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmti10.pfb>
+Output written on Relatorio.pdf (31 pages, 317087 bytes).
+PDF statistics:
+ 158 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+
