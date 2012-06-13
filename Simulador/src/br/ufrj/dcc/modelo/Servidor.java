@@ -4,7 +4,6 @@ import br.ufrj.dcc.controle.GeradorAleatorio;
 import br.ufrj.dcc.controle.GerenciadoEventos;
 import br.ufrj.dcc.modelo.enumarator.CorCliente;
 import br.ufrj.dcc.modelo.enumarator.FilaOrigem;
-import br.ufrj.dcc.modelo.enumarator.TipoEvento;
 import br.ufrj.dcc.modelo.fila.Fila;
 
 
@@ -12,18 +11,9 @@ import br.ufrj.dcc.modelo.fila.Fila;
  * Classe que representa o servidor do nosso sistema.
  */
 public class Servidor {
-	// taxa de serviço da fila 1
-	private double mi;
-	private double media1;
-	private double dp1;
-	private String distribuicao1;
 	
-	// taxa de serviço da fila 2
-	private double mi2;
-	private double media2;
-	private double dp2;
-	
-	private String distribuicao2;
+	AttrFila attrFila1;
+	AttrFila attrFila2;
 		
 	// quanto tempo o cliente vai demorar para acabar o serviço
 	private double terminoServico;
@@ -49,28 +39,16 @@ public class Servidor {
 	/**
 	 * Construtor da classe.
 	 * 
-	 * @param mi Taxa de serviço.
+	 * @param attrFila1 atributos da fila1
+	 * @param attrFila2 atributos da fila2
 	 * @param gerenciador Classe que gerencia os eventos de saída e chegada do sistema.
 	 */
-	public Servidor(double mi, GerenciadoEventos gerenciador) {
-		// preenche mi com o valor recebido como parâmetro, que é a taxa de serviço
-		this.mi = mi;
-		// preenche a variável gerenciador com o valor passado como parâmetro
+	public Servidor(AttrFila attrFila1,AttrFila attrFila2, GerenciadoEventos gerenciador) {
+		this.attrFila1 = attrFila1;
+		this.attrFila2 = attrFila2;		
 		this.gerenciador = gerenciador;
 	}
 	
-	public Servidor(double mi,double media1, double dp1, String distribuicao1, double mi2,double media2, double dp2, String distribuicao2, GerenciadoEventos gerenciador)
-	{
-		this(mi,gerenciador);
-		this.media1 = media1;
-		this.dp1 = dp1;
-		this.mi2 = mi2;
-		this.media2 = media2;
-		this.dp2 = dp2;
-		this.distribuicao1 = distribuicao1;
-		this.distribuicao2 = distribuicao2;
-	}
-
 	/**
 	 * Método que gera quanto tempo demorará o serviço de um determinado cliente.
 	 * 
@@ -86,23 +64,23 @@ public class Servidor {
 		double ret = 0;
 		switch (origem) {
 		case FILA1:
-			if(distribuicao1.equalsIgnoreCase("normal"))
+			if(attrFila1.distribuicaoServidor.equalsIgnoreCase("normal"))
 			{
-				ret = GeradorAleatorio.getInstance().getGeraAmostra(media1,dp1);
+				ret = GeradorAleatorio.getInstance().getGeraAmostra(attrFila1.media, attrFila1.desvioPadrao);
 			}
 			else
 			{
-				ret = GeradorAleatorio.getInstance().getGeraAmostra(mi,distribuicao1);
+				ret = GeradorAleatorio.getInstance().getGeraAmostra(attrFila1.txServico, attrFila1.distribuicaoServidor);
 			}
 			break;
 		case FILA2:
-			if(distribuicao1.equalsIgnoreCase("normal"))
+			if(attrFila2.distribuicaoServidor.equalsIgnoreCase("normal"))
 			{
-				ret = GeradorAleatorio.getInstance().getGeraAmostra(media2,dp2);
+				ret = GeradorAleatorio.getInstance().getGeraAmostra(attrFila2.media, attrFila2.desvioPadrao);
 			}
 			else
 			{
-				ret =  GeradorAleatorio.getInstance().getGeraAmostra(mi2, distribuicao2);
+				ret =  GeradorAleatorio.getInstance().getGeraAmostra(attrFila2.txServico, attrFila2.distribuicaoServidor);
 			}
 			break;
 		}

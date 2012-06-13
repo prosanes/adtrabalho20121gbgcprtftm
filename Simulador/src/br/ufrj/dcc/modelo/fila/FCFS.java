@@ -1,7 +1,6 @@
 package br.ufrj.dcc.modelo.fila;
 
 import java.util.LinkedList;
-
 import br.ufrj.dcc.modelo.Fregues;
 import br.ufrj.dcc.modelo.Servidor;
 import br.ufrj.dcc.modelo.enumarator.FilaOrigem;
@@ -79,14 +78,24 @@ public class FCFS extends Fila{
 	}
 
 	/**
-	 * Adicona um freguês que sofreu interrupção na fila e tem serviço pendente.
-	 * 
+	 * Adicona um freguês que sofreu interrupção na fila e tem serviço pendente. É feita a decisão de onde o cliente 
+	 * vai ser inserido de acordo com o tipo do caso passado
+	 *
 	 * @param fregues Freguês que sofreu uma interrupção.
 	 * 
 	 */
 	public void addFreguesResidual(Fregues fregues) {
-		// devolvo um freguês com serviço pedente a fila.
-		((LinkedList<Fregues>) fregueses).addFirst(fregues);
+		// se for do tipo 1 , insiro normalmente
+		if(tipoDeInterrupcao == 1)
+		{
+			// devolvo um freguês com serviço pedente a fila.
+			((LinkedList<Fregues>) fregueses).addFirst(fregues);
+		}
+		// se for do tipo 2, insiro no fundo da pilha
+		else
+		{
+			((LinkedList<Fregues>) fregueses).addLast(fregues);
+		}
 		// atualizo o número de fregueses na fila
 		this.setNumeroFreguesesNaFila(fregueses.size());
 	}

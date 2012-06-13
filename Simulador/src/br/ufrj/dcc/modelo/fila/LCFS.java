@@ -1,9 +1,7 @@
 package br.ufrj.dcc.modelo.fila;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Stack;
-
 import br.ufrj.dcc.modelo.Fregues;
 import br.ufrj.dcc.modelo.Servidor;
 import br.ufrj.dcc.modelo.enumarator.FilaOrigem;
@@ -95,7 +93,8 @@ public class LCFS extends Fila {
 	};
 
 	/**
-	 * Adicona um freguês que sofreu interrupção na fila e tem serviço pendente.
+	 * Adicona um freguês que sofreu interrupção na fila e tem serviço pendente. É feita a decisão de onde o cliente 
+	 * vai ser inserido de acordo com o tipo do caso passado
 	 * 
 	 * @param fregues Freguês que sofreu uma interrupção.
 	 * 
@@ -106,8 +105,6 @@ public class LCFS extends Fila {
 		{
 			// devolvo um freguês com serviço pedente a fila.
 			((Stack<Fregues>) fregueses).push(fregues);
-			// atualizo o número de fregueses na fila
-			this.setNumeroFreguesesNaFila(fregueses.size());
 		}
 		// se for do tipo 2, insiro no fundo da pilha
 		else
@@ -123,6 +120,9 @@ public class LCFS extends Fila {
 				((Stack<Fregues>) fregueses).push(tempStack.pop());
 			}
 		}
+
+		// atualizo o número de fregueses na fila
+		this.setNumeroFreguesesNaFila(fregueses.size());
 	}
 
 }

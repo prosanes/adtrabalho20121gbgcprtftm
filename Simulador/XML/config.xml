@@ -1,19 +1,23 @@
 <ad>
-	<configuracao>
-		<fasetransiente>100</fasetransiente>
-		<numerorodadas>30</numerorodadas>
-		<tamanhorodadas>20000</tamanhorodadas>
-		<taxaservico>1.0</taxaservico>
-		<media1>2.0</media1>
-		<dp1>1.0</dp1>
-		<distribuicaoServidor1>normal</distribuicaoServidor1>
-		<taxaservico2>4.0</taxaservico2>
-		<media2>0</media2>
-		<dp2>0</dp2>					  		     
-		<distribuicaoServidor2>exponencial</distribuicaoServidor2>
+	<configuracao>	
+		<!-- <numerorodadas>40</numerorodadas> -->
+		<!-- <fasetransiente>250</fasetransiente> -->
+		<!-- <tamanhorodadas>30000</tamanhorodadas> -->
 		<utilizacao>2.0</utilizacao>
-		<fila1>FCFS</fila1>
-		<fila2>LCFS</fila2>
-		<tipoInterrupcaoFila2>1</tipoInterrupcaoFila2>
+		<casoInterrupcao>1</casoInterrupcao>
+		<fila1>			
+			<tipo>FCFS</tipo>
+			<distribuicaoServidor>normal</distribuicaoServidor>
+			<txServico>1.0</txServico>
+			<media>2.0</media>
+			<desvioPadrao>1.0</desvioPadrao>
+		</fila1>
+		<fila2>		
+			<tipo>LCFS</tipo>
+			<distribuicaoServidor>exponencial</distribuicaoServidor>
+			<txServico>1.0</txServico>
+			<media>0</media>
+			<desvioPadrao>0</desvioPadrao>
+		</fila2>
 	</configuracao>
 </ad>
