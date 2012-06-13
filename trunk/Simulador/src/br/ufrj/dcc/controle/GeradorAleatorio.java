@@ -37,7 +37,7 @@ public class GeradorAleatorio {
 
 	/**
 	 * Método que serve para gerar o instante de uma chegada no sistema ou 
-	 * o tempo de serviço.
+	 * o tempo de serviço, quando a distribuicao é exponencial 
 	 * 
 	 * @param taxa Usado para gerar o instante.
 	 * @return Retorna um instante
@@ -47,12 +47,21 @@ public class GeradorAleatorio {
 		return -(Math.log(random.nextDouble()) / taxa);
 	}
 	
+	
+	/**
+	 * Método que serve para gerar o instante de uma chegada no sistema ou 
+	 * o tempo de serviço, quando a distribuicao é exponencial ou deterministica
+	 * 
+	 * @param taxa Usado para gerar o instante.
+	 * @param tipo de distribuicao desejada
+	 * @return Retorna um instante
+	 */
 	public double getGeraAmostra(double taxa, String distribuicao) {
 		// retorna um amostra gerada pela fórmula da exponencial.
 		double ret = 0;
 		switch (distribuicao) {
 		case "exponencial":
-			ret = -(Math.log(random.nextDouble()) / taxa);
+			ret = getGeraAmostra(taxa);
 			break;
 		case "deterministica":
 			ret = 1/taxa;
@@ -60,7 +69,14 @@ public class GeradorAleatorio {
 		}
 		return ret;
 	}
-	
+	/**
+	 * Método que serve para gerar o instante de uma chegada no sistema ou 
+	 * o tempo de serviço, quando a distribuicao é normal
+	 * 
+	 * @param media da distribuicao normal
+	 * @param desvio padrao da distribuicao normal
+	 * @return Retorna um instante
+	 */
 	public double getGeraAmostra(double media, double dp)
 	{
 		return random.nextGaussian()*dp + media;

@@ -7,10 +7,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import br.ufrj.dcc.modelo.AttrFila;
 import br.ufrj.dcc.modelo.Configuracao;
 
 public class ManipulaXML {
-
+	
 	private String xmlPathname;
 
 	/**
@@ -30,6 +31,10 @@ public class ManipulaXML {
 	 *         do xml.
 	 */
 	public Configuracao leConfiguracao() throws Exception {
+		
+		AttrFila attrFila1 = new AttrFila();
+		AttrFila attrFila2 = new AttrFila();
+		
 		// crio um objeto da classe DocumentBuilderFactory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		// crio um objeto da classe DocumentBuilder
@@ -42,46 +47,54 @@ public class ManipulaXML {
 		NodeList nl = elem.getElementsByTagName("configuracao");
 		// pega a primeira tag configuração
 		Element tagConfig = (Element) nl.item(0);
-		// retorna o valor da tag fasetransiente
-		int fasetransiente = Integer.parseInt(getChildTagValue(tagConfig, "fasetransiente"));
+
 		
 		// retorna o valor da tag numerorodadas
-		int numerorodadas = Integer.parseInt(getChildTagValue(tagConfig, "numerorodadas"));
-		
+//		int numerorodadas = Integer.parseInt(getChildTagValue(tagConfig, "numerorodadas"));		
+		int numerorodadas = 40;
+		// retorna o valor da tag fasetransiente
+//		int fasetransiente = Integer.parseInt(getChildTagValue(tagConfig, "fasetransiente"))
+		int fasetransiente = 250;	
 		// retorna o valor da tag tamamnhorodadas
-		int tamanhorodadas = Integer.parseInt(getChildTagValue(tagConfig, "tamanhorodadas"));
+//		int tamanhorodadas = Integer.parseInt(getChildTagValue(tagConfig, "tamanhorodadas"));
+		int tamanhorodadas = 30000;
 		
-		// retorna o valor da tag taxaservico
-		double taxaservico = Double.parseDouble(getChildTagValue(tagConfig, "taxaservico"));
-		double media1 = Double.parseDouble(getChildTagValue(tagConfig, "media1"));
-		double dp1 = Double.parseDouble(getChildTagValue(tagConfig, "dp1"));
-		//retorna a distribuicao do servidor
-		String distribuicaoServidor1 = getChildTagValue(tagConfig, "distribuicaoServidor1");
 		
-		// retorna o valor da tag taxaservico od servidor 2
-		double taxaservico2 = Double.parseDouble(getChildTagValue(tagConfig, "taxaservico2"));
-		double media2 = Double.parseDouble(getChildTagValue(tagConfig, "media2"));
-		double dp2 = Double.parseDouble(getChildTagValue(tagConfig, "dp2"));
-		//retorna a distribuicao do servidor
-		String distribuicaoServidor2 = getChildTagValue(tagConfig, "distribuicaoServidor2");
+		
+		// retorna o valor da tag utilizacao 
+		///TODO TROCAR POR LAMBDA
+		double utilizacao = Double.parseDouble(getChildTagValue(tagConfig, "utilizacao"));
+
+		// retorna o tipo do comportamento pós interrupção por um cliente vindo da fila 1 - CASO 1 : Vai para o primeiro da fila 2 - CASO 2: vai para o final da fila 2
+		int casoInterrupcao = Integer.parseInt(getChildTagValue(tagConfig, "casoInterrupcao"));
+		
+
+		// retorno tags internas da tag fila 1
+		NodeList filaConfig = elem.getElementsByTagName("fila1");
+		Element tagFila1 = (Element) filaConfig.item(0);
+		// retorna a disciplina de atendimento da fila1
+		attrFila1.tipo = getChildTagValue(tagFila1, "tipo");
+		// retorna o tipo de distribuicao do servidor da fila 1
+		attrFila1.distribuicaoServidor = getChildTagValue(tagFila1, "distribuicaoServidor");
+		attrFila1.txServico = getChildTagValue(tagFila1, "txServico").isEmpty() ? 0.0 : Double.parseDouble(getChildTagValue(tagFila1, "txServico"));
+		attrFila1.media = getChildTagValue(tagFila1, "media").isEmpty()? 0.0 : Double.parseDouble(getChildTagValue(tagFila1, "media"));
+		attrFila1.desvioPadrao = getChildTagValue(tagFila1, "desvioPadrao").isEmpty() ? 0.0 : Double.parseDouble(getChildTagValue(tagFila1, "desvioPadrao"));
+		
+		// retorno tags internas da tag fila 1
+		filaConfig = elem.getElementsByTagName("fila2");
+		Element tagFila2 = (Element) filaConfig.item(0);
+		// retorna a disciplina de atendimento da fila1
+		attrFila2.tipo = getChildTagValue(tagFila2, "tipo");
+		// retorna o tipo de distribuicao do servidor da fila 1
+		attrFila2.distribuicaoServidor = getChildTagValue(tagFila2, "distribuicaoServidor");
+		attrFila2.txServico = getChildTagValue(tagFila2, "txServico").isEmpty() ? 0.0 : Double.parseDouble(getChildTagValue(tagFila2, "txServico"));
+		attrFila2.media = getChildTagValue(tagFila2, "media").isEmpty()? 0.0 : Double.parseDouble(getChildTagValue(tagFila2, "media"));
+		attrFila2.desvioPadrao = getChildTagValue(tagFila2, "desvioPadrao").isEmpty() ? 0.0 : Double.parseDouble(getChildTagValue(tagFila2, "desvioPadrao"));
 				
 		
-		// retorna o valor da tag utilizacao
-		double utilizacao = Double.parseDouble(getChildTagValue(tagConfig, "utilizacao"));
-	
-		// retorna a disciplina de atendimento da fila1
-		String fila1 = getChildTagValue(tagConfig, "fila1");
-		
-		// retorna a disciplina de atendimento da fila2
-		String fila2 = getChildTagValue(tagConfig, "fila2");
-		// retorna o tipo de comportamento pós interrupção pela fila1
-		int tipoInterrupcaoFila2 = Integer.parseInt(getChildTagValue(tagConfig, "tipoInterrupcaoFila2"));
-
 		// cria um objeto da classe Configuração com os valores supra obtidos.
-		Configuracao config = new Configuracao(fasetransiente, numerorodadas,
-				tamanhorodadas, taxaservico,media1,dp1,distribuicaoServidor1,taxaservico2,media2, dp2, distribuicaoServidor2, 
-				utilizacao, fila1, fila2, tipoInterrupcaoFila2);
-		return config;
+		return new Configuracao(fasetransiente, numerorodadas, tamanhorodadas, utilizacao, casoInterrupcao, attrFila1, attrFila2);
+		
 	}
 
 	/**

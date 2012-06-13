@@ -38,24 +38,23 @@ public class Rodada {
 		//crio o gerenciador dos eventos dessa rodada
 		gerenciador = new GerenciadoEventos();
 		//crio o servidor do sistema passando como parâmetro a taxa de serviço e o gerenciador de eventos
-		Servidor server = new Servidor(config.getTaxaservico(),config.getMedia1(),config.getDp1(), config.getDistribuicaoServidor1(), 
-				config.getTaxaservico2(),config.getMedia2(),config.getDp2(), config.getDistribuicaoServidor2(), gerenciador);
+		Servidor server = new Servidor(config.getAttrFila1(),config.getAttrFila2(), gerenciador);
 		//esta variável passa armazenar o próximo evento.
 		Evento evento = null;
 		//variável que irá armazenar o instante atual no sistema
 		double horaAtual = 0; 
 
-		if ("FCFS".equals(config.getFila2())) {
+		if (config.getAttrFila2().tipo.equalsIgnoreCase("FCFS")) {
 			// cria a fila 2 com disciplina FCFS , a cada rodada criamos a fila de novo.
 			fila2 = new FCFS(server);
-			fila2.setTipoDeInterrupcao(config.getTipoDeInterrupcaoFila2());
+			fila2.setTipoDeInterrupcao(config.getCasoInterrupcao());
 		} else {
 			// cria a fila 2 com disciplina LCFS , a cada rodada criamos a fila de novo.
 			fila2 = new LCFS(server);
-			fila2.setTipoDeInterrupcao(config.getTipoDeInterrupcaoFila2());
+			fila2.setTipoDeInterrupcao(config.getCasoInterrupcao());
 		}
 
-		if ("FCFS".equals(config.getFila1())) {
+		if (config.getAttrFila1().tipo.equalsIgnoreCase("FCFS")) {
 			// cria a fila 1 com disciplina FCFS , a cada rodada criamos a fila de novo.
 			fila1 = new FCFS(config.getUtilizacao() / 2.0, server, fila2);
 		} else {
