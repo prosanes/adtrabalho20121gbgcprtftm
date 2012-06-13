@@ -1,0 +1,71 @@
+CASO 6
+<ad>
+	<configuracao>
+		<fasetransiente>100</fasetransiente>
+		<numerorodadas>30</numerorodadas>
+		<tamanhorodadas>20000</tamanhorodadas>
+		<taxaservico>1.0</taxaservico>
+		<media1>0</media1>
+		<dp1>0</dp1>
+		<distribuicaoServidor1>deterministica</distribuicaoServidor1>
+		<taxaservico2>4.0</taxaservico2>
+		<media2>0</media2>
+		<dp2>0</dp2>					  		     
+		<distribuicaoServidor2>exponencial</distribuicaoServidor2>
+		<utilizacao>4.0</utilizacao>
+		<fila1>FCFS</fila1>
+		<fila2>LCFS</fila2>
+		<tipoInterrupcaoFila2>2</tipoInterrupcaoFila2>
+	</configuracao>
+</ad>
+
+E[W1]:5016.136991417502
+Tamanho IC : 0.32339704574029776%
+Mínimo : 4999.914952576972
+Máximo : 5032.359030258032
+
+V(W1):8205302.0271686055
+Tamanho IC : 0.5598673805830344%
+Mínimo : 8159363.21764017
+Máximo : 8251240.836697041
+
+E[T1]:5017.137041668759
+Tamanho IC : 0.3233325840172504%
+Mínimo : 5000.915002828245
+Máximo : 5033.359080509273
+
+E[Nq1]:4000.6550918366697
+Tamanho IC : 0.31556815934706195%
+Mínimo : 3988.0302982015364
+Máximo : 4013.279885471803
+
+E[N1]:4001.4526910411832
+Tamanho IC : 0.31550430993873463%
+Mínimo : 3988.827935340789
+Máximo : 4014.0774467415777
+
+Resultado Da Fila 2:
+E[W2]:12435.93945629918
+Tamanho IC : 0.0514295297908737%
+Mínimo : 12429.543711111728
+Máximo : 12442.335201486632
+
+V(W2):5.155544844199552E7
+Tamanho IC : 0.10213515350161985%
+Mínimo : 5.150279220559084E7
+Máximo : 5.1608104678400196E7
+
+E[T2]:12436.189486662086
+Tamanho IC : 0.051432503319337006%
+Mínimo : 12429.793243091559
+Máximo : 12442.585730232613
+
+E[Nq2]:9918.38112325967
+Tamanho IC : 0.021226438413967107%
+Mínimo : 9916.27580419888
+Máximo : 9920.486442320462
+
+E[N2]:9918.580535779516
+Tamanho IC : 0.0212263462788681%
+Mínimo : 9916.475183529043
+Máximo : 9920.68588802999

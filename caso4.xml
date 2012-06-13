@@ -1,0 +1,20 @@
+CASO 5
+<ad>
+	<configuracao>
+		<fasetransiente>100</fasetransiente>
+		<numerorodadas>30</numerorodadas>
+		<tamanhorodadas>20000</tamanhorodadas>
+		<taxaservico>1.0</taxaservico>
+		<media1>0</media1>
+		<dp1>0</dp1>
+		<distribuicaoServidor1>deterministica</distribuicaoServidor1>
+		<taxaservico2>4.0</taxaservico2>
+		<media2>0</media2>
+		<dp2>0</dp2>					  		     
+		<distribuicaoServidor2>exponencial</distribuicaoServidor2>
+		<utilizacao>3.0</utilizacao>
+		<fila1>FCFS</fila1>
+		<fila2>LCFS</fila2>
+		<tipoInterrupcaoFila2>2</tipoInterrupcaoFila2>
+	</configuracao>
+</ad>
