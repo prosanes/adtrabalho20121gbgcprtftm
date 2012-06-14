@@ -100,14 +100,14 @@ public class Rodada {
 						// como não transiente e a partir de agora será computada
 						// a estatística
 						gerenciador.geraEventoDeChegada(horaAtual, fila1, CorCliente.NAOTRANSIENTE);
-						
+
+						//insiro na lista de tempos
+						listaTempos.add(horaAtual);
 						
 					}
 					// incrementa a quantidade de chegadas
 					i++;
 					
-					//insiro na lista de tempos
-					listaTempos.add(horaAtual);
 				} else {
 					// se já tiver gerado chegadas suficiente seto o próximo evento de chegada para null.
 					gerenciador.proximoEventoChegada = null;

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -178,23 +179,38 @@ public class Simulador {
 		}
 		
 		int range = (int)rangeOfAxis;
-		range = (int) ((range *1.1)/listaRodadas.getNumRows());		
+		range = (int) ((range *1.2)/listaRodadas.getNumRows());		
 		
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		
 		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
-			Integer size = listaRodadas.getArrayListRow(i).size();
-			Double[] arr = new Double[listaRodadas.getArrayListRow(i).size()]; 
-			arr = listaRodadas.getArrayListRow(i).toArray(arr);
 			XYSeries serie = new XYSeries("Rodada "+ i);
 			
-
-			
+			ArrayList<Double> list = listaRodadas.getArrayListRow(i);
+			int listSize = list.size();
+			int qty = 0;
+			Double probability = 0.0;
 			for(Double axisX = 1.0 ; axisX <= range; axisX++)
 			{				
-				int nearIndex = NearUtil.nearInclusive(arr, axisX);
-				Double value = (nearIndex + 1) / size.doubleValue();
-				serie.add(axisX, value);
+				if(list.size() > 1)
+				{
+					int nearIndex = 0;
+					nearIndex = findNearestIndex(list, axisX);
+					if(nearIndex > 0)
+						list.removeAll(new ArrayList<Double>(list.subList(0, nearIndex + 1)));
+					else if(nearIndex == 0)
+						list.remove(0);
+					if(nearIndex >= 0)
+						qty += nearIndex + 1;
+				}
+				else
+				{
+					qty+= 1;
+					serie.add(axisX, probability);	
+				}
+				probability = (qty) / (double)listSize;
+				serie.add(axisX, probability);
+				
 			}
 			
 
@@ -202,7 +218,7 @@ public class Simulador {
 			
 		} 
 		
-        JFreeChart chart = ChartFactory.createXYLineChart(
+        JFreeChart chart = ChartFactory.createScatterPlot(
             "Log Axis Demo",          // chart title
             "Category",               // domain axis label
             "Value",                  // range axis label
@@ -219,6 +235,26 @@ public class Simulador {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private static int findNearestIndex(List<Double> list, double key)
+	{	
+		int index = 0;
+		int i=0;
+		while(index == 0) {
+			if(list.size() -1 == i)
+			{
+				break;
+			}
+			if(list.get(i) >= key)
+			{
+				index = i -1;
+				break;
+			}
+			i++;
+		}
+		if(index < 0) index = -1;
+		return index;
 	}
 	
 	/** Returns the cumulative distribution function. */
