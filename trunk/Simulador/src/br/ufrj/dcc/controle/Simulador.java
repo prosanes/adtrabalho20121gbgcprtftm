@@ -1,11 +1,24 @@
 package br.ufrj.dcc.controle;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+import java.util.TreeSet;
 
-import br.ufrj.dcc.modelo.Configuracao;
-import br.ufrj.dcc.modelo.Resultado;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
-public class Simulador {
+import br.ufrj.dcc.modelo.*;
+
+
+public class Simulador { 
 
 	/**
 	 * @param args
@@ -17,6 +30,9 @@ public class Simulador {
 		Configuracao config = null;
 		// cria o objeto que irá armazenar os valores das rodadas
 		Resultado resultado = new Resultado();
+		
+		VAList<Double> listaRodadas = new VAList<Double>();
+		
 		try {
 			// le o xml
 			config = xml.leConfiguracao();
@@ -26,13 +42,19 @@ public class Simulador {
 			System.exit(0);
 		}
 		
+		//seto a capacidade da minha lista de rodadas
+		listaRodadas.ensureCapacity(config.getNumerorodadas());
 		
 		// "loop" que gera as n rodadas que está no objeto config.
 		for (int i = 0; i < config.getNumerorodadas(); i++) {
+			//instancio na lista de rodadas uma rodada nova
+			
 			// cria um objeto rodada
 			Rodada rodada = new Rodada(config, resultado);
 			// gera um rodada de simulação
 			rodada.simulacao();
+			
+			listaRodadas.Add(rodada.listaTempos,i);
 		}
 
 		// esperança do tempo de espera médio da fila 1
@@ -96,6 +118,8 @@ public class Simulador {
 		
 		// o intervalo de confiança de N2 com precisão de 95%
 		calculaIntervaloDeConfianca(resultado.getN2());
+		
+		geraGrafico(listaRodadas, config);
 	}
 
 	/**
@@ -143,4 +167,82 @@ public class Simulador {
 		}
 		return resultado;
 	}
+	
+	
+	public static void geraGrafico(VAList<Double> listaRodadas, Configuracao config)
+	{	
+		double rangeOfAxis = 0.0;
+		
+		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
+			rangeOfAxis += listaRodadas.getArrayListRow(i).get(listaRodadas.getArrayListRow(i).size() -1);
+		}
+		
+		int range = (int)rangeOfAxis;
+		range = (int) ((range *1.1)/listaRodadas.getNumRows());		
+		
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		
+		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
+			Integer size = listaRodadas.getArrayListRow(i).size();
+			double[] arr = new double[listaRodadas.getArrayListRow(i).size()]; 
+			XYSeries serie = new XYSeries("Rodada "+ i);
+			
+
+			
+			for(Double axisX = 1.0 ; axisX <= range; axisX++)
+			{				
+				int nearIndex = NearUtil.nearInclusive(arr, axisX);
+				Double value = (nearIndex + 1) / size.doubleValue();
+				serie.add(axisX, value);
+			}
+			
+			
+//			Collections.sort(list);
+//			for(int x = 0; x< list.size() ; x ++)
+//			{
+//				double time = 0.0;
+//				if(x > 0)
+//				{
+//					time = list.get(x) - list.get(x - 1);
+//				}
+//				else
+//				{
+//					time = list.get(x);
+//				}	
+//				Double cdfvalue = cdf(time,config.getUtilizacao()/2);
+//				serie.add(list.get(x), cdfvalue);
+//			}
+
+	        dataset.addSeries(serie);
+			
+		} 
+		
+        JFreeChart chart = ChartFactory.createXYLineChart(
+            "Log Axis Demo",          // chart title
+            "Category",               // domain axis label
+            "Value",                  // range axis label
+            dataset,                  // data
+            PlotOrientation.VERTICAL,
+            true,                     // include legend
+            true,
+            false
+        );
+        File file = new File("./chart/chart.png");
+        try {
+			ChartUtilities.saveChartAsPNG(file,chart,600,400);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/** Returns the cumulative distribution function. */
+	  private static double cdf(double x, double lambda) {
+	    if (x <= 0.0) {
+	      return 0.0;
+	    }
+	    
+	    Double value = Math.exp(-x * lambda);
+	    return 1.0 - value;
+	  }
 }

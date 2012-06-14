@@ -51,13 +51,13 @@ public class ManipulaXML {
 		
 		// retorna o valor da tag numerorodadas
 //		int numerorodadas = Integer.parseInt(getChildTagValue(tagConfig, "numerorodadas"));		
-		int numerorodadas = 40;
+		int numerorodadas = 8;
 		// retorna o valor da tag fasetransiente
 //		int fasetransiente = Integer.parseInt(getChildTagValue(tagConfig, "fasetransiente"))
-		int fasetransiente = 250;	
+		int fasetransiente = 100;	
 		// retorna o valor da tag tamamnhorodadas
 //		int tamanhorodadas = Integer.parseInt(getChildTagValue(tagConfig, "tamanhorodadas"));
-		int tamanhorodadas = 30000;
+		int tamanhorodadas = 2000;
 		
 		
 		
