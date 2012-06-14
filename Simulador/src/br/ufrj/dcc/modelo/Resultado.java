@@ -17,7 +17,7 @@ public class Resultado {
 	private ArrayList<Double> n2 = new ArrayList<Double>();
 	private ArrayList<Double> varianciaW1 = new ArrayList<Double>();
 	private ArrayList<Double> varianciaW2 = new ArrayList<Double>();
-	
+		
 	public Resultado() {
 	}
 
@@ -231,6 +231,5 @@ public class Resultado {
 	public void setVarianciaW2(Double varianciaW2) {
 		this.varianciaW2.add(varianciaW2);
 	}
-	
-	
+
 }

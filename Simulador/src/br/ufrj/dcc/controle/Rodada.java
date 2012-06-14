@@ -1,5 +1,7 @@
 package br.ufrj.dcc.controle;
 
+import java.util.ArrayList;
+
 import br.ufrj.dcc.modelo.Configuracao;
 import br.ufrj.dcc.modelo.Evento;
 import br.ufrj.dcc.modelo.Fregues;
@@ -18,6 +20,8 @@ public class Rodada {
 	private Fila fila2 = null;
 	GerenciadoEventos gerenciador = null;
 	Fregues freguesAntigo;
+	
+	public ArrayList<Double> listaTempos = new ArrayList<Double>();
 
 	/**
 	 * Construtor da classe.
@@ -71,10 +75,12 @@ public class Rodada {
 		}
 		//double tempo = 0;
 		double tempoInicial = 0;
+		
 		//variável que armazena a quantidade de chegadas  no sistema.
 		int i = 1;
 		while((evento = gerenciador.pegarProximoEvento()) != null) {
 			//coloca na variável horaAtual o instante de ocorrência do evento
+
 			horaAtual = evento.getHoraOcorrencia();
 			//se o evento for de chegada
 			if (evento.isEventoChegada()) {
@@ -94,9 +100,14 @@ public class Rodada {
 						// como não transiente e a partir de agora será computada
 						// a estatística
 						gerenciador.geraEventoDeChegada(horaAtual, fila1, CorCliente.NAOTRANSIENTE);
+						
+						
 					}
 					// incrementa a quantidade de chegadas
 					i++;
+					
+					//insiro na lista de tempos
+					listaTempos.add(horaAtual);
 				} else {
 					// se já tiver gerado chegadas suficiente seto o próximo evento de chegada para null.
 					gerenciador.proximoEventoChegada = null;
