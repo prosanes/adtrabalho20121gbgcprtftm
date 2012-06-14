@@ -37,7 +37,7 @@ public class NearUtil{
      * @return The index of the array value nearest the value. null if the value
      *      is larger or smaller than any values in the array.
      */
-    public static Integer nearInclusive(final double[] array, final double value) {
+    public static Integer nearInclusive(final Double[] array, final Double value) {
         Integer i = null;
         int idx = binarySearch(array, value);
         if (idx < 0) {
@@ -80,7 +80,7 @@ public class NearUtil{
      *         that this guarantees that the return value will be &gt;= 0 if
      *         and only if the key is found.
      */
-    public static int binarySearch(double[] a, double key) {
+    public static int binarySearch(Double[] a, Double key) {
         int index = -1;
         if (a[0] < a[1]) {
             index = Arrays.binarySearch(a, key);
@@ -91,7 +91,7 @@ public class NearUtil{
         return index;
     }
 
-    private static int binarySearch(double[] a, double key, int low, int high) {
+    private static int binarySearch(Double[] a, Double key, int low, int high) {
         while (low <= high) {
             int mid = (low + high) / 2;
             double midVal = a[mid];

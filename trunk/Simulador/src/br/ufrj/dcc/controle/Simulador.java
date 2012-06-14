@@ -184,7 +184,8 @@ public class Simulador {
 		
 		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
 			Integer size = listaRodadas.getArrayListRow(i).size();
-			double[] arr = new double[listaRodadas.getArrayListRow(i).size()]; 
+			Double[] arr = new Double[listaRodadas.getArrayListRow(i).size()]; 
+			arr = listaRodadas.getArrayListRow(i).toArray(arr);
 			XYSeries serie = new XYSeries("Rodada "+ i);
 			
 
@@ -196,22 +197,6 @@ public class Simulador {
 				serie.add(axisX, value);
 			}
 			
-			
-//			Collections.sort(list);
-//			for(int x = 0; x< list.size() ; x ++)
-//			{
-//				double time = 0.0;
-//				if(x > 0)
-//				{
-//					time = list.get(x) - list.get(x - 1);
-//				}
-//				else
-//				{
-//					time = list.get(x);
-//				}	
-//				Double cdfvalue = cdf(time,config.getUtilizacao()/2);
-//				serie.add(list.get(x), cdfvalue);
-//			}
 
 	        dataset.addSeries(serie);
 			
