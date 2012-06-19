@@ -32,7 +32,7 @@ public class Simulador {
 		// cria o objeto que irá armazenar os valores das rodadas
 		Resultado resultado = new Resultado();
 		
-		VAList<Double> listaRodadas = new VAList<Double>();
+		VAList<Integer> listaRodadas = new VAList<Integer>();
 		
 		try {
 			// le o xml
@@ -43,19 +43,18 @@ public class Simulador {
 			System.exit(0);
 		}
 		
-		//seto a capacidade da minha lista de rodadas
-		listaRodadas.ensureCapacity(config.getNumerorodadas());
-		
 		// "loop" que gera as n rodadas que está no objeto config.
 		for (int i = 0; i < config.getNumerorodadas(); i++) {
-			//instancio na lista de rodadas uma rodada nova
-			
+				
 			// cria um objeto rodada
 			Rodada rodada = new Rodada(config, resultado);
+
 			// gera um rodada de simulação
 			rodada.simulacao();
 			
-			listaRodadas.Add(rodada.listaTempos,i);
+			//adiciono na lista de rodadas a lista gerada na rodada
+			listaRodadas.Add(rodada.listaTempos, i);
+			
 		}
 
 		// esperança do tempo de espera médio da fila 1
@@ -120,6 +119,8 @@ public class Simulador {
 		// o intervalo de confiança de N2 com precisão de 95%
 		calculaIntervaloDeConfianca(resultado.getN2());
 		
+		
+		
 		geraGrafico(listaRodadas, config);
 	}
 
@@ -170,56 +171,28 @@ public class Simulador {
 	}
 	
 	
-	public static void geraGrafico(VAList<Double> listaRodadas, Configuracao config)
+	public static void geraGrafico(VAList<Integer> listaRodadas, Configuracao config)
 	{	
-		double rangeOfAxis = 0.0;
-		
-		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
-			rangeOfAxis += listaRodadas.getArrayListRow(i).get(listaRodadas.getArrayListRow(i).size() -1);
-		}
-		
-		int range = (int)rangeOfAxis;
-		range = (int) ((range *1.2)/listaRodadas.getNumRows());		
-		
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		
 		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
-			XYSeries serie = new XYSeries("Rodada "+ i);
-			
-			ArrayList<Double> list = listaRodadas.getArrayListRow(i);
-			int listSize = list.size();
-			int qty = 0;
-			Double probability = 0.0;
-			for(Double axisX = 1.0 ; axisX <= range; axisX++)
-			{				
-				if(list.size() > 1)
-				{
-					int nearIndex = 0;
-					nearIndex = findNearestIndex(list, axisX);
-					if(nearIndex > 0)
-						list.removeAll(new ArrayList<Double>(list.subList(0, nearIndex + 1)));
-					else if(nearIndex == 0)
-						list.remove(0);
-					if(nearIndex >= 0)
-						qty += nearIndex + 1;
-				}
-				else
-				{
-					qty+= 1;
-					serie.add(axisX, probability);	
-				}
-				probability = (qty) / (double)listSize;
-				serie.add(axisX, probability);
+			XYSeries serie = new XYSeries("Rodada "+ i);			
+			ArrayList<Integer> list = listaRodadas.getArrayListRow(i);
+			Double maxData = (double)list.get(list.size()-1);
+			for(int indice = 0; indice < list.size(); indice ++)
+			{
+				Double axisY = list.get(indice)/maxData;
+				Double axisX = (double)indice/10;
 				
+				serie.add(axisX, axisY);
 			}
 			
-
 	        dataset.addSeries(serie);
 			
 		} 
 		
-        JFreeChart chart = ChartFactory.createScatterPlot(
-            "Log Axis Demo",          // chart title
+        JFreeChart chart = ChartFactory.createXYLineChart(
+            "Log",          // chart title
             "Category",               // domain axis label
             "Value",                  // range axis label
             dataset,                  // data
@@ -230,40 +203,10 @@ public class Simulador {
         );
         File file = new File("./chart/chart.png");
         try {
-			ChartUtilities.saveChartAsPNG(file,chart,600,400);
+			ChartUtilities.saveChartAsPNG(file,chart,1920,1080);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	private static int findNearestIndex(List<Double> list, double key)
-	{	
-		int index = 0;
-		int i=0;
-		while(index == 0) {
-			if(list.size() -1 == i)
-			{
-				break;
-			}
-			if(list.get(i) >= key)
-			{
-				index = i -1;
-				break;
-			}
-			i++;
-		}
-		if(index < 0) index = -1;
-		return index;
-	}
-	
-	/** Returns the cumulative distribution function. */
-	  private static double cdf(double x, double lambda) {
-	    if (x <= 0.0) {
-	      return 0.0;
-	    }
-	    
-	    Double value = Math.exp(-x * lambda);
-	    return 1.0 - value;
-	  }
 }

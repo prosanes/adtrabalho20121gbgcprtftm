@@ -21,7 +21,7 @@ public class Rodada {
 	GerenciadoEventos gerenciador = null;
 	Fregues freguesAntigo;
 	
-	public ArrayList<Double> listaTempos = new ArrayList<Double>();
+	public ArrayList<Integer> listaTempos = new ArrayList<Integer>();
 
 	/**
 	 * Construtor da classe.
@@ -32,7 +32,18 @@ public class Rodada {
 	public Rodada(Configuracao config, Resultado resultado) {
 		this.config = config;
 		this.resultado = resultado;
+		setCapacity(1000);
 	}
+	
+	private void setCapacity(int qty)
+	{
+		for(int i =0 ; i < qty ; i++)
+		{
+			listaTempos.add(0);
+		}
+		
+	}
+	
 
 	/**
 	 * Método que efetivamente realiza a rodada de simulação
@@ -60,10 +71,10 @@ public class Rodada {
 
 		if (config.getAttrFila1().tipo.equalsIgnoreCase("FCFS")) {
 			// cria a fila 1 com disciplina FCFS , a cada rodada criamos a fila de novo.
-			fila1 = new FCFS(config.getUtilizacao() / 2.0, server, fila2);
+			fila1 = new FCFS(config.getTxChegada(), server, fila2);
 		} else {
 			// cria a fila 1 com disciplina LCFS , a cada rodada criamos a fila de novo.
-			fila1 = new LCFS(config.getUtilizacao() / 2.0, server, fila2);
+			fila1 = new LCFS(config.getTxChegada(), server, fila2);
 		}
 
 		if(config.getFasetransiente() > 0) {
@@ -100,9 +111,6 @@ public class Rodada {
 						// como não transiente e a partir de agora será computada
 						// a estatística
 						gerenciador.geraEventoDeChegada(horaAtual, fila1, CorCliente.NAOTRANSIENTE);
-
-						//insiro na lista de tempos
-						listaTempos.add(horaAtual);
 						
 					}
 					// incrementa a quantidade de chegadas
@@ -114,10 +122,29 @@ public class Rodada {
 				}
 			} else if (evento.isEventoSaida()) {
 				// trata o evento de saída e devolvo a área para fazer o cálculo de Nq1 e Nq2
-				evento.getServidor().finish(fila1, fila2, horaAtual);
-			}			
+				double tempoServico = evento.getServidor().finish(fila1, fila2, horaAtual);
+				
+				//se retornar maior que zero é que ele não é transiente
+				if(tempoServico > -1)
+				{
+					//insiro na lista de tempos
+					incrementaDadoGrafico(tempoServico);
+				}	
+			}
 		}
 		// pega os resultados desta rodada.
 		server.geraResultado(resultado, config, horaAtual, tempoInicial);
+	}
+	
+	public void incrementaDadoGrafico(Double tempoServico)
+	{
+		for(Double i=0.0; i < listaTempos.size(); i++)
+		{			
+			if(tempoServico < i/10)
+			{
+				listaTempos.set(i.intValue(), listaTempos.get(i.intValue()) + 1);
+			}
+		}	
+		
 	}
 }

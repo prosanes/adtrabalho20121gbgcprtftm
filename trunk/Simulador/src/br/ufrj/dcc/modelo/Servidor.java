@@ -148,7 +148,7 @@ public class Servidor {
 	 * @return Retorna a área do gráfico para fazer o cálculo dos números
 	 *         médios de clientes nas filas.
 	 */
-	public void finish(Fila fila1, Fila fila2, double horaAtual) {
+	public double finish(Fila fila1, Fila fila2, double horaAtual) {
 		// cliente antigo agora é o cliente em atendimento
 		Fregues clienteAntigo = this.sendoAtendido;
 		// se a fila não estiver vazia
@@ -167,7 +167,7 @@ public class Servidor {
 			sendoAtendido = null;
 		}
 		// chamo quando o meu freguês acabou de ser servido
-		servicoCompleto(clienteAntigo, fila2);
+		return servicoCompleto(clienteAntigo, fila2);
 	}
 
 	/**
@@ -177,7 +177,10 @@ public class Servidor {
 	 * @param fila Recebe a fila como parâmetro porque se a fila de origem do
 	 *            cliente for a fila1 tenho que coloca-lo na fila2.
 	 */
-	private void servicoCompleto(Fregues clienteAntigo, Fila fila) {
+	private double servicoCompleto(Fregues clienteAntigo, Fila fila) {
+
+		double result = -1.0;
+		
 		// se existe algum cliente que acabou o serviço
 		if (clienteAntigo != null) {
 			// se o cliente que acabou de ser servido veio da fila1
@@ -199,9 +202,13 @@ public class Servidor {
 					somaQuadradosW1 += w1*w1;
 					somaQuadradosW2 += w2*w2;
 					n++;
+					
+					result = clienteAntigo.getInstanteSaidaSistema() - clienteAntigo.getInstanteChegadaFila1();
 				}
 			}
 		}
+		
+		return result;
 	}
 
 	/**
