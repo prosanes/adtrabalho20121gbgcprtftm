@@ -73,12 +73,30 @@ public class LCFS extends Fila {
 			servidor.trataInterrupcao(fregues, preemptiva);
 		} else {
 			// senão adiciono o freguês a fila e atualizo a quantidade de fregueses na fila
-			((Stack<Fregues>) fregueses).push(fregues);
-			// ordeno todos os cliente em orde de chegada do mais recente para o mais antigo
+			if(tipoDeInterrupcao == 1)
+			{
+				Fregues frequesAntigo = null;
+				if(((Stack<Fregues>) fregueses).size() > 0) frequesAntigo = ((Stack<Fregues>) fregueses).peek();
+				if(frequesAntigo != null && frequesAntigo.getServicoResidual() > 0.0)
+				{
+					((Stack<Fregues>) fregueses).pop();
+					((Stack<Fregues>) fregueses).push(fregues);
+					((Stack<Fregues>) fregueses).push(frequesAntigo);
+				}
+				else
+				{
+					((Stack<Fregues>) fregueses).push(fregues);
+				}
+				
+					
+			}
+			else
+			{
+				((Stack<Fregues>) fregueses).push(fregues);
+			}
+			
+			
 			this.setNumeroFreguesesNaFila(fregueses.size());
-			// ordeno todos os cliente em orde de chegada do mais recente para o mais antigo
-
-			//Collections.sort((Stack<Fregues>) fregueses, TIME_ORDER);
 		}
 	}
 

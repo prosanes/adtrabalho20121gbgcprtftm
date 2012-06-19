@@ -3,19 +3,19 @@
 		<!-- <numerorodadas>40</numerorodadas> -->
 		<!-- <fasetransiente>250</fasetransiente> -->
 		<!-- <tamanhorodadas>30000</tamanhorodadas> -->
-		<utilizacao>2.0</utilizacao>
-		<casoInterrupcao>1</casoInterrupcao>
+		<txChegada>1</txChegada>
+		<casoInterrupcao>2</casoInterrupcao>
 		<fila1>			
 			<tipo>FCFS</tipo>
-			<distribuicaoServidor>normal</distribuicaoServidor>
-			<txServico>1.0</txServico>
-			<media>2.0</media>
+			<distribuicaoServidor>deterministica</distribuicaoServidor>
+			<txServico>2</txServico>
+			<media>0.25</media>
 			<desvioPadrao>1.0</desvioPadrao>
 		</fila1>
 		<fila2>		
 			<tipo>LCFS</tipo>
 			<distribuicaoServidor>exponencial</distribuicaoServidor>
-			<txServico>1.0</txServico>
+			<txServico>4.0</txServico>
 			<media>0</media>
 			<desvioPadrao>0</desvioPadrao>
 		</fila2>

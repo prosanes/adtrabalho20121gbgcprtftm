@@ -11,7 +11,8 @@ public class VAList<Type>
 	{
 		array = new ArrayList<ArrayList<Type>>();
 	}
- 
+	
+	 
 	/**
 	 * ensures a minimum capacity of num rows. Note that this does not guarantee
 	 * that there are that many rows.

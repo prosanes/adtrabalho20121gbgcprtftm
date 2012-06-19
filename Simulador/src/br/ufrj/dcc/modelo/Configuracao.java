@@ -6,7 +6,7 @@ public class Configuracao {
 	private int fasetransiente;
 	private int numerorodadas;
 	private int tamanhorodadas;
-	private double utilizacao;
+	private double txChegada;
 	private int casoInterrupcao;
 	private AttrFila attrFila1;
 	private AttrFila attrFila2;
@@ -19,17 +19,17 @@ public class Configuracao {
 	 * @param numerorodadas    Quantidade de rodadas que vamos realizar para mostrar o resultado da simulação.
 	 * @param tamanhorodadas   Quantidade de eventos de chegada que vamos criar. 
 	 * @param taxaservico      Taxa com que o servidor atende os cliente.
-	 * @param utilizacao	   Taxa de  utilização do sistema.
+	 * @param txChegada	   Taxa de  utilização do sistema.
 	 * @param casoInterrupcao	   Qual é o tipo de comportamento após interrução de um cliente da fila 1 quando um cliente da fila 2 está no sistema.
 	 * @param attrFila1		   Objeto que traz o atributo da fila 1.
 	 * @param attrFila2	       Objeto que traz os atributos da fila 2.
 	 */	
-	public Configuracao(int fasetransiente, int numerorodadas, int tamanhorodadas, double utilizacao, int casoInterrupcao, AttrFila attrFila1, AttrFila attrFila2)
+	public Configuracao(int fasetransiente, int numerorodadas, int tamanhorodadas, double txChegada, int casoInterrupcao, AttrFila attrFila1, AttrFila attrFila2)
 	{
 		this.fasetransiente = fasetransiente;
 		this.numerorodadas = numerorodadas;
 		this.tamanhorodadas = tamanhorodadas;
-		this.utilizacao = utilizacao;
+		this.txChegada = txChegada;
 		this.casoInterrupcao = casoInterrupcao;
 		this.attrFila1 = attrFila1;
 		this.attrFila2 = attrFila2;
@@ -76,8 +76,8 @@ public class Configuracao {
 	 * 
 	 * @return Retorna o valor da utilização do sistema.
 	 */
-	public double getUtilizacao() {
-		return utilizacao;
+	public double getTxChegada() {
+		return txChegada;
 	}
 
 	/**

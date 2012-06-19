@@ -79,7 +79,13 @@ public class GeradorAleatorio {
 	 */
 	public double getGeraAmostra(double media, double dp)
 	{
-		return random.nextGaussian()*dp + media;
+		double result = 0.0;
+		do
+		{
+			result = random.nextGaussian()*dp + 1/media;	
+		}while(result < 0.0);
+		
+		return result;
 	}
 
 	
