@@ -52,7 +52,7 @@ public class Simulador {
 
 			// gera um rodada de simulação
 			try {
-				rodada.simulacao();
+				rodada.simulacao(i);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
