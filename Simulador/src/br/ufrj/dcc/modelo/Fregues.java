@@ -22,6 +22,7 @@ public class Fregues {
 	private double tempoInicialDeEntradaNaFila2;
 	private FilaOrigem filaAtual;
 
+	private boolean foiInterrompido;
 	/**
 	 * Retorna o valor do campo cor do Freguês.
 	 * 

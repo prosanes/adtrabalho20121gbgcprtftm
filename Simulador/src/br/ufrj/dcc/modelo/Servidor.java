@@ -14,6 +14,8 @@ public class Servidor {
 	
 	AttrFila attrFila1;
 	AttrFila attrFila2;
+	
+	boolean continuidade;
 		
 	// quanto tempo o cliente vai demorar para acabar o serviço
 	private double terminoServico;
@@ -43,10 +45,11 @@ public class Servidor {
 	 * @param attrFila2 atributos da fila2
 	 * @param gerenciador Classe que gerencia os eventos de saída e chegada do sistema.
 	 */
-	public Servidor(AttrFila attrFila1,AttrFila attrFila2, GerenciadoEventos gerenciador) {
+	public Servidor(boolean continuidade, AttrFila attrFila1,AttrFila attrFila2, GerenciadoEventos gerenciador) {
 		this.attrFila1 = attrFila1;
 		this.attrFila2 = attrFila2;		
 		this.gerenciador = gerenciador;
+		this.continuidade = continuidade;
 	}
 	
 	/**
@@ -109,11 +112,11 @@ public class Servidor {
 		sendoAtendido = fregues;
 		// pega o tempo de serviço residual
 		double residuo = this.sendoAtendido.getServicoResidual();
-		// se for zero gera um evento de saída normal
-		if (residuo == 0.0) {
+		// se for menor(fregues ja interrompido, mas sem continuidade) ou igual a zero, gera um evento de saída normal
+		if (residuo <= 0.0) {
 			gerenciador.geraEventoSaida(horaAtual, sendoAtendido, this);
-		} else {// se tiver resíduo de serviço gera uma interrupção.
-			gerenciador.geraEventoDeInterrupcao(horaAtual, residuo, sendoAtendido, this);
+		} else {// se tiver resíduo de serviço e e continuidade gera uma interrupção.
+			gerenciador.geraEventoSaidaComInterrupcao(horaAtual, residuo, sendoAtendido, this);
 		}
 	}
 
@@ -222,11 +225,19 @@ public class Servidor {
 		double horaTermino = gerenciador.getProximoEventoSaida().getHoraOcorrencia();
 		// coloca no campo servicoResidual do freguês que sofreu a interrupção
 		// quanto tempo falta para acabar o serviço
-		this.getFregues().setServicoResidual(horaTermino - fregues.getInstanteChegadaFila1());
+		if(continuidade)
+		{
+			this.getFregues().setServicoResidual(horaTermino - fregues.getInstanteChegadaFila1());
+		}else
+		{
+			//setamos o valor negativo para gerar um novo tempo de servico quando o fregues voltar ao servidor
+			//a verificacao sera feita no metodo de receive do servidor
+			this.getFregues().setServicoResidual(-1);
+		}
 		// soma o primeiro intervalo de tempo que o freguês ficou na fila2 para
 		// armazenar o próximo intervalo de tempo
 		if (this.getFregues().getCor().equals(CorCliente.NAOTRANSIENTE)) {
-			Double w2 = this.getFregues().getInstanteSaidaFila2() - this.getFregues().getInstanteChegadaFila2();;
+			Double w2 = this.getFregues().getInstanteSaidaFila2() - this.getFregues().getInstanteChegadaFila2();
 			somaw2 += w2;
 			somaQuadradosW2 += w2*w2;
 		}

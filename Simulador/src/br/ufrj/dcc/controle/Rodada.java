@@ -1,5 +1,10 @@
 package br.ufrj.dcc.controle;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import br.ufrj.dcc.modelo.Configuracao;
@@ -47,13 +52,20 @@ public class Rodada {
 
 	/**
 	 * Método que efetivamente realiza a rodada de simulação
+	 * @throws FileNotFoundException 
 	 * 
 	 */
-	public void simulacao() {
+	public void simulacao() throws FileNotFoundException  {
+		
+		//crio um outputwriter para guardar os valores do numero de clientes por rodada
+		FileOutputStream file  = new FileOutputStream("dados.txt");
+		OutputStreamWriter out = new OutputStreamWriter(file);
+		
+		
 		//crio o gerenciador dos eventos dessa rodada
 		gerenciador = new GerenciadoEventos();
 		//crio o servidor do sistema passando como parâmetro a taxa de serviço e o gerenciador de eventos
-		Servidor server = new Servidor(config.getAttrFila1(),config.getAttrFila2(), gerenciador);
+		Servidor server = new Servidor(config.isContinuidade(), config.getAttrFila1(),config.getAttrFila2(), gerenciador);
 		//esta variável passa armazenar o próximo evento.
 		Evento evento = null;
 		//variável que irá armazenar o instante atual no sistema
@@ -84,8 +96,12 @@ public class Rodada {
 			//gera um evento de chegada para começar a simulação e o marca como sendo da fase não transiente.
 			gerenciador.geraEventoDeChegada(0.0, fila1, CorCliente.NAOTRANSIENTE);
 		}
-		//double tempo = 0;
+		
+		
 		double tempoInicial = 0;
+		//numero de passos total do sistema, levando em consideração que uma rodada 
+		long passos = 0;		
+		long nClientesAcumulado = 0;
 		
 		//variável que armazena a quantidade de chegadas  no sistema.
 		int i = 1;
@@ -131,10 +147,44 @@ public class Rodada {
 					incrementaDadoGrafico(tempoServico);
 				}	
 			}
+			
+			int nClientes = this.fila1.getNumeroFreguesesNaFila() + this.fila2.getNumeroFreguesesNaFila() + (server.isOcioso()? 0 : 1); 
+
+			passos++;
+			
+			nClientesAcumulado += nClientes;
+
+//			if(passos % 1000 == 0 && passos != 0)
+//			{
+//				System.out.println(nClientesAcumulado/passos);
+//			}	
+			if(passos % 10000==0)
+			{
+				gravaMediaPessoas(nClientesAcumulado, passos, horaAtual, out);
+			}
 		}
+		
+		try {
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// pega os resultados desta rodada.
 		server.geraResultado(resultado, config, horaAtual, tempoInicial);
 	}
+	
+	public void gravaMediaPessoas(long nClientesAcumulado,long nPassos,double horaAtual, OutputStreamWriter out)
+	{
+		try {
+			out.write(horaAtual + "," + (double)(nClientesAcumulado/nPassos) +";");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void incrementaDadoGrafico(Double tempoServico)
 	{

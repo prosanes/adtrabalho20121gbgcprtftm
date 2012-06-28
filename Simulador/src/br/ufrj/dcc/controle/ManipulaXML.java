@@ -56,9 +56,9 @@ public class ManipulaXML {
 		// retorna o valor da tag tamamnhorodadas
 //		int tamanhorodadas = Integer.parseInt(getChildTagValue(tagConfig, "tamanhorodadas"));
 		
-		int numerorodadas = 8;
-		int fasetransiente = 2600;	
-		int tamanhorodadas = 26000;
+		int numerorodadas = 2;
+		int fasetransiente = 1000;	
+		int tamanhorodadas = 1000000;
 		
 		
 		
@@ -68,6 +68,8 @@ public class ManipulaXML {
 
 		// retorna o tipo do comportamento pós interrupção por um cliente vindo da fila 1 - CASO 1 : Vai para o primeiro da fila 2 - CASO 2: vai para o final da fila 2
 		int casoInterrupcao = Integer.parseInt(getChildTagValue(tagConfig, "casoInterrupcao"));
+		
+		boolean continuidade = Boolean.parseBoolean(getChildTagValue(tagConfig, "continuidade"));
 		
 
 		// retorno tags internas da tag fila 1
@@ -94,7 +96,7 @@ public class ManipulaXML {
 				
 		
 		// cria um objeto da classe Configuração com os valores supra obtidos.
-		return new Configuracao(fasetransiente, numerorodadas, tamanhorodadas, txChegada, casoInterrupcao, attrFila1, attrFila2);
+		return new Configuracao(fasetransiente, numerorodadas, tamanhorodadas, txChegada, casoInterrupcao,continuidade, attrFila1, attrFila2);
 		
 	}
 
