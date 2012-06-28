@@ -1,6 +1,7 @@
 package br.ufrj.dcc.controle;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,7 +51,12 @@ public class Simulador {
 			Rodada rodada = new Rodada(config, resultado);
 
 			// gera um rodada de simulação
-			rodada.simulacao();
+			try {
+				rodada.simulacao();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			//adiciono na lista de rodadas a lista gerada na rodada
 			listaRodadas.Add(rodada.listaTempos, i);

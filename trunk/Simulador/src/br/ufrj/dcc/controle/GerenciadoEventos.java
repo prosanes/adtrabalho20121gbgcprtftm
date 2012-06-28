@@ -83,7 +83,7 @@ public class GerenciadoEventos {
 	 * @param cliente Freguês que está chegando ao sistema
 	 * @param servidor O servidor do sistema
 	 */
-	public void geraEventoDeInterrupcao(double horaAtual, double residuo, Fregues cliente, Servidor server) {
+	public void geraEventoSaidaComInterrupcao(double horaAtual, double residuo, Fregues cliente, Servidor server) {
 		// atualiza o campo do fregues com o novo instante que irá sair da fila2
 		cliente.setInstanteSaidaFila2(horaAtual);
 		// atualiza o valor do campo com a instante atual mais o resíduo do serviço

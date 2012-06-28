@@ -8,6 +8,7 @@ public class Configuracao {
 	private int tamanhorodadas;
 	private double txChegada;
 	private int casoInterrupcao;
+	private boolean continuidade;
 	private AttrFila attrFila1;
 	private AttrFila attrFila2;
 	
@@ -24,13 +25,14 @@ public class Configuracao {
 	 * @param attrFila1		   Objeto que traz o atributo da fila 1.
 	 * @param attrFila2	       Objeto que traz os atributos da fila 2.
 	 */	
-	public Configuracao(int fasetransiente, int numerorodadas, int tamanhorodadas, double txChegada, int casoInterrupcao, AttrFila attrFila1, AttrFila attrFila2)
+	public Configuracao(int fasetransiente, int numerorodadas, int tamanhorodadas, double txChegada, int casoInterrupcao, boolean continuidade, AttrFila attrFila1, AttrFila attrFila2)
 	{
 		this.fasetransiente = fasetransiente;
 		this.numerorodadas = numerorodadas;
 		this.tamanhorodadas = tamanhorodadas;
 		this.txChegada = txChegada;
 		this.casoInterrupcao = casoInterrupcao;
+		this.continuidade = continuidade;
 		this.attrFila1 = attrFila1;
 		this.attrFila2 = attrFila2;
 	}
@@ -96,5 +98,13 @@ public class Configuracao {
 	 */
 	public AttrFila getAttrFila2() {
 		return attrFila2;
+	}
+
+	public boolean isContinuidade() {
+		return continuidade;
+	}
+
+	public void setContinuidade(boolean continuidade) {
+		this.continuidade = continuidade;
 	}
 }

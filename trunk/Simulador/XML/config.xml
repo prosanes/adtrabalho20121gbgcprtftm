@@ -3,8 +3,9 @@
 		<!-- <numerorodadas>40</numerorodadas> -->
 		<!-- <fasetransiente>250</fasetransiente> -->
 		<!-- <tamanhorodadas>30000</tamanhorodadas> -->
-		<txChegada>1</txChegada>
-		<casoInterrupcao>2</casoInterrupcao>
+		<txChegada>1.2</txChegada>
+		<casoInterrupcao>1</casoInterrupcao>
+		<continuidade>0</continuidade>
 		<fila1>			
 			<tipo>FCFS</tipo>
 			<distribuicaoServidor>deterministica</distribuicaoServidor>
@@ -15,7 +16,7 @@
 		<fila2>		
 			<tipo>LCFS</tipo>
 			<distribuicaoServidor>exponencial</distribuicaoServidor>
-			<txServico>4.0</txServico>
+			<txServico>4</txServico>
 			<media>0</media>
 			<desvioPadrao>0</desvioPadrao>
 		</fila2>
