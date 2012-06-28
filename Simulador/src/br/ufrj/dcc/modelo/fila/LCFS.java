@@ -77,7 +77,7 @@ public class LCFS extends Fila {
 			{
 				Fregues frequesAntigo = null;
 				if(((Stack<Fregues>) fregueses).size() > 0) frequesAntigo = ((Stack<Fregues>) fregueses).peek();
-				if(frequesAntigo != null && frequesAntigo.getServicoResidual() > 0.0)
+				if(frequesAntigo != null && frequesAntigo.getServicoResidual() != 0.0)
 				{
 					((Stack<Fregues>) fregueses).pop();
 					((Stack<Fregues>) fregueses).push(fregues);
