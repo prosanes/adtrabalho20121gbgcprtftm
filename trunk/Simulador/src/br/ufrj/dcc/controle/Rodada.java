@@ -55,10 +55,10 @@ public class Rodada {
 	 * @throws FileNotFoundException 
 	 * 
 	 */
-	public void simulacao() throws FileNotFoundException  {
+	public void simulacao(int rodada) throws FileNotFoundException  {
 		
 		//crio um outputwriter para guardar os valores do numero de clientes por rodada
-		FileOutputStream file  = new FileOutputStream("dados.txt");
+		FileOutputStream file  = new FileOutputStream("dados"+rodada+"sem.txt");
 		OutputStreamWriter out = new OutputStreamWriter(file);
 		
 		
@@ -158,7 +158,7 @@ public class Rodada {
 //			{
 //				System.out.println(nClientesAcumulado/passos);
 //			}	
-			if(passos % 10000==0)
+			if(passos < 10000)
 			{
 				gravaMediaPessoas(nClientesAcumulado, passos, horaAtual, out);
 			}
