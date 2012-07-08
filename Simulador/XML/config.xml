@@ -1,24 +1,21 @@
 <ad>
 	<configuracao>	
-		<!-- <numerorodadas>40</numerorodadas> -->
-		<!-- <fasetransiente>250</fasetransiente> -->
-		<!-- <tamanhorodadas>30000</tamanhorodadas> -->
-		<txChegada>1.4</txChegada>
-		<casoInterrupcao>1</casoInterrupcao>
-		<continuidade>0</continuidade>
+		<txChegada>0.5</txChegada>
+		<casoInterrupcao>2</casoInterrupcao>
+		<continuidade>1</continuidade>
 		<fila1>			
 			<tipo>FCFS</tipo>
-			<distribuicaoServidor>deterministica</distribuicaoServidor>
-			<txServico>2</txServico>
-			<media>0.25</media>
+			<distribuicaoServidor>normal</distribuicaoServidor>
+			<txServico>10</txServico>
+			<media>10.0</media>
 			<desvioPadrao>1.0</desvioPadrao>
 		</fila1>
 		<fila2>		
 			<tipo>LCFS</tipo>
-			<distribuicaoServidor>deterministica</distribuicaoServidor>
+			<distribuicaoServidor>exponencial</distribuicaoServidor>
 			<txServico>4</txServico>
-			<media>0</media>
-			<desvioPadrao>0</desvioPadrao>
+			<media>0.0</media>
+			<desvioPadrao>0.0</desvioPadrao>
 		</fila2>
 	</configuracao>
 </ad>

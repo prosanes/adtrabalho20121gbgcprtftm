@@ -1,5 +1,7 @@
 package br.ufrj.dcc.controle;
 
+import java.io.File;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -40,7 +42,10 @@ public class ManipulaXML {
 		// crio um objeto da classe DocumentBuilder
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		// crio um objeto da classe Document e passo como parâmetro o caminho do meu config.xml
-		Document doc = db.parse(xmlPathname);
+		
+		File file = new File(xmlPathname);
+		
+		Document doc = db.parse(file);
 		// pego o primeiro elemento do xml
 		Element elem = doc.getDocumentElement();
 		// retorno tags internas a tag cujo nome é configuracao
