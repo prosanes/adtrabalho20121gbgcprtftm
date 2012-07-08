@@ -5,10 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -17,7 +13,9 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import br.ufrj.dcc.modelo.*;
+import br.ufrj.dcc.modelo.Configuracao;
+import br.ufrj.dcc.modelo.Resultado;
+import br.ufrj.dcc.modelo.VAList;
 
 
 public class Simulador { 
@@ -180,7 +178,7 @@ public class Simulador {
 	public static void geraGrafico(VAList<Integer> listaRodadas, Configuracao config)
 	{	
 		XYSeriesCollection dataset = new XYSeriesCollection();
-		
+
 		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
 			XYSeries serie = new XYSeries("Rodada "+ i);			
 			ArrayList<Integer> list = listaRodadas.getArrayListRow(i);
@@ -207,9 +205,10 @@ public class Simulador {
             true,
             false
         );
+        
         File file = new File("./chart/chart.png");
         try {
-			ChartUtilities.saveChartAsPNG(file,chart,1920,1080);
+			ChartUtilities.saveChartAsPNG(file,chart,1024,768);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

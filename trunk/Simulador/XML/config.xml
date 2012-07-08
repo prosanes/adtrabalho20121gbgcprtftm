@@ -1,5 +1,8 @@
 <ad>
-	<configuracao>	
+	<configuracao>
+		<numerorodadas>8</numerorodadas>
+		<fasetransiente>1000</fasetransiente>
+		<tamanhorodadas>100000</tamanhorodadas>
 		<txChegada>0.5</txChegada>
 		<casoInterrupcao>2</casoInterrupcao>
 		<continuidade>1</continuidade>
