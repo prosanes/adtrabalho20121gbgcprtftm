@@ -2,6 +2,7 @@ package br.ufrj.dcc.controle;
 
 import java.io.File;
 
+import javax.smartcardio.ATR;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -93,6 +94,9 @@ public class ManipulaXML {
 				
 		
 		// cria um objeto da classe Configuração com os valores supra obtidos.
+		System.out.println("txChegada = " + txChegada + " caso = "+ casoInterrupcao + " distribuicao 1 = " + attrFila1.distribuicaoServidor + " tx = " + attrFila1.txServico 
+		+ "distribuicao 2 = " + attrFila2.distribuicaoServidor + " tx = " + attrFila2.txServico);
+
 		return new Configuracao(fasetransiente, numerorodadas, tamanhorodadas, txChegada, casoInterrupcao,continuidade, attrFila1, attrFila2);
 		
 	}

@@ -58,7 +58,7 @@ public class Rodada {
 	public void simulacao(int rodada) throws FileNotFoundException  {
 		
 		//crio um outputwriter para guardar os valores do numero de clientes por rodada
-		FileOutputStream file  = new FileOutputStream("dados"+rodada+".txt");
+		FileOutputStream file  = new FileOutputStream("6dados"+rodada+".txt");
 		OutputStreamWriter out = new OutputStreamWriter(file);
 		
 		

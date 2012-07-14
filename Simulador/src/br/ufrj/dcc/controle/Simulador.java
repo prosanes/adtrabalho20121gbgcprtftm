@@ -196,7 +196,7 @@ public class Simulador {
 		} 
 		
         JFreeChart chart = ChartFactory.createXYLineChart(
-            "Log",          // chart title
+            "CDF",          // chart title
             "Category",               // domain axis label
             "Value",                  // range axis label
             dataset,                  // data
