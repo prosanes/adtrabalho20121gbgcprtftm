@@ -2,7 +2,9 @@ package br.ufrj.dcc.controle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -177,10 +179,18 @@ public class Simulador {
 	
 	public static void geraGrafico(VAList<Integer> listaRodadas, Configuracao config)
 	{	
-		XYSeriesCollection dataset = new XYSeriesCollection();
-
+		
 		for (int i = 0; i < listaRodadas.getNumRows(); i++) {
-			XYSeries serie = new XYSeries("Rodada "+ i);			
+			//crio um outputwriter para guardar os valores do numero de clientes por rodada
+			FileOutputStream file = null;
+			try {
+				file = new FileOutputStream("./cdf/cdf"+i+".txt");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			OutputStreamWriter out = new OutputStreamWriter(file);
+			
 			ArrayList<Integer> list = listaRodadas.getArrayListRow(i);
 			Double maxData = (double)list.get(list.size()-1);
 			for(int indice = 0; indice < list.size(); indice ++)
@@ -188,30 +198,21 @@ public class Simulador {
 				Double axisY = list.get(indice)/maxData;
 				Double axisX = (double)indice/10;
 				
-				serie.add(axisX, axisY);
+				try {
+					out.write(axisX + "," + axisY +"\n");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
-	        dataset.addSeries(serie);
-			
+			try {
+				out.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} 
 		
-        JFreeChart chart = ChartFactory.createXYLineChart(
-            "CDF",          // chart title
-            "Category",               // domain axis label
-            "Value",                  // range axis label
-            dataset,                  // data
-            PlotOrientation.VERTICAL,
-            true,                     // include legend
-            true,
-            false
-        );
-        
-        File file = new File("./chart/chart.png");
-        try {
-			ChartUtilities.saveChartAsPNG(file,chart,1024,768);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

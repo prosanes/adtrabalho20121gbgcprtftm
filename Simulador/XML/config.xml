@@ -3,13 +3,13 @@
 		<numerorodadas>8</numerorodadas>
 		<fasetransiente>1</fasetransiente>
 		<tamanhorodadas>100000</tamanhorodadas>
-		<txChegada>2</txChegada>
-		<casoInterrupcao>2</casoInterrupcao>
-		<continuidade>1</continuidade>
+		<txChegada>1</txChegada>
+		<casoInterrupcao>1</casoInterrupcao>
+		<continuidade>0</continuidade>
 		<fila1>			
 			<tipo>FCFS</tipo>
 			<distribuicaoServidor>deterministica</distribuicaoServidor>
-			<txServico>10</txServico>
+			<txServico>2</txServico>
 			<media>10.0</media>
 			<desvioPadrao>1.0</desvioPadrao>
 		</fila1>
