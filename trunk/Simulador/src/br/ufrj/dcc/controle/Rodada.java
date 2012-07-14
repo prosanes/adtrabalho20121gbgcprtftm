@@ -58,7 +58,7 @@ public class Rodada {
 	public void simulacao(int rodada) throws FileNotFoundException  {
 		
 		//crio um outputwriter para guardar os valores do numero de clientes por rodada
-		FileOutputStream file  = new FileOutputStream("dados"+rodada+"sem.txt");
+		FileOutputStream file  = new FileOutputStream("dados"+rodada+".txt");
 		OutputStreamWriter out = new OutputStreamWriter(file);
 		
 		
@@ -154,13 +154,9 @@ public class Rodada {
 			
 			nClientesAcumulado += nClientes;
 
-//			if(passos % 1000 == 0 && passos != 0)
-//			{
-//				System.out.println(nClientesAcumulado/passos);
-//			}	
-			if(passos < 10000)
+			if(passos < 20000)
 			{
-				gravaMediaPessoas(nClientesAcumulado, passos, horaAtual, out);
+				gravaMediaPessoasComEntrada(nClientesAcumulado, passos, horaAtual, i, out);
 			}
 		}
 		
@@ -178,7 +174,19 @@ public class Rodada {
 	public void gravaMediaPessoas(long nClientesAcumulado,long nPassos,double horaAtual, OutputStreamWriter out)
 	{
 		try {
-			out.write(horaAtual + "," + (double)(nClientesAcumulado/nPassos) +";");
+			double nClienteAcPasso = (double)nClientesAcumulado/(double)nPassos;
+			out.write(horaAtual + "," + nClienteAcPasso +"\n");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void gravaMediaPessoasComEntrada(long nClientesAcumulado,long nPassos,double horaAtual,Integer nEntradas, OutputStreamWriter out)
+	{
+		try {
+			double nClienteAcPasso = (double)nClientesAcumulado/(double)nPassos;
+			out.write(horaAtual + "," + nEntradas +"," + nClienteAcPasso +"\n");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
